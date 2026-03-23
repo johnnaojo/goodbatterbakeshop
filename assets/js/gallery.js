@@ -19,6 +19,36 @@ const fallbackImages = [
     title: "Macaron Cupcakes",
     description: "Detailed decoration with a statement finish.",
   },
+  {
+    src: "assets/gallery/sweet-cupcake-treat.jpg",
+    title: "Sweet Cupcake Treat",
+    description: "Detailed decoration with a statement finish.",
+  },
+  {
+    src: "assets/gallery/paint-splash-cake.jpg",
+    title: "Paint Splash Cake",
+    description: "Artistic cake with vibrant colors",
+  },
+  {
+    src: "assets/gallery/elegant-crystal-cake.jpg",
+    title: "Elegant Crystal Cake",
+    description: "Eyecatching design with shimmering crystals.",
+  },
+  {
+    src: "assets/gallery/candy-land-cake.jpg",
+    title: "Candy Land Cake",
+    description: "Vibrant and playful design with a variety of colorful candies.",
+  },
+  {
+    src: "assets/gallery/icecream-delight.jpg",
+    title: "Ice Cream Delight",
+    description: "A sweet and creamy dessert with a delightful twist.",
+  },
+  {
+    src: "assets/gallery/gooey-blondies.jpg",
+    title: "Gooey Blondies",
+    description: "Decadent and fudgy blondies with a gooey center.",
+  },
 ];
 
 const galleryRoot = document.querySelector("#gallery-grid");

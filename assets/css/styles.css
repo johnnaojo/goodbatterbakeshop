@@ -459,6 +459,11 @@ main {
 .gallery-thumbs {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: start;
+  height: min(75vh, 720px);
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
 }
 
 .thumb-button {
@@ -626,6 +631,12 @@ textarea::placeholder {
   .gallery-thumbs,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-thumbs {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 
