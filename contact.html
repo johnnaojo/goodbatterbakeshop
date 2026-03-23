@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Good Batter Bakeshop</title>
+  <meta name="description" content="Contact Good Batter Bakeshop to request a cake or dessert order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="contact">
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/images/GBB-Circle.png" alt="Good Batter Bakeshop logo">
+        <span>
+          <strong>Good Batter Bakeshop</strong>
+          <small>Homemade baked treats in Springfield VA</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+      <section class="page-hero panel">
+        <p class="section-label">Contact and orders</p>
+        <h1>Tell us what you are planning</h1>
+        <p>Fill out the form below to send your request directly to Good Batter Bakeshop and we'll get back to you with a quote within 48 hours. </p>
+      </section>
+
+      <section class="contact-layout">
+        <form class="panel contact-form" id="order-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="1ff3c12d-1436-434e-9334-cec6ad36de24">
+          <input type="hidden" name="subject" value="New Good Batter Bakeshop order request">
+          <input type="hidden" name="from_name" value="Good Batter Bakeshop Website">
+          <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your full name" required>
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="(555) 555-5555">
+            </label>
+            <label>
+              Event date
+              <input type="date" name="eventDate">
+            </label>
+            <label>
+              Dessert type
+              <select name="dessertType">
+                <option value="Custom cake">Custom cake</option>
+                <option value="Cupcakes">Cupcakes</option>
+                <option value="Cookies">Cookies</option>
+                <option value="Cake pops">Cake pops</option>
+                <option value="Pastries">Pastries</option>
+                <option value="Mixed dessert order">Mixed order</option>
+              </select>
+            </label>
+            <label>
+              Servings / quantity
+              <input type="text" name="quantity" placeholder="Example: 24 cupcakes or 8-inch cake">
+            </label>
+          </div>
+          <label>
+            Inspiration / theme
+            <input type="text" name="theme" placeholder="Colors, event style, favorite details">
+          </label>
+          <label>
+            Order details
+            <textarea name="details" rows="7" placeholder="Share flavors, design ideas, allergies, pickup timing, and any other helpful details." required></textarea>
+          </label>
+          <button class="button button-primary" type="submit">Send order request</button>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+          <strong><p>Please place orders at least 1 week in advance. Orders placed less than 1 week before the event date may not be accommodated or may require a rush fee.
+            Pickup and delivery is only available in the Fairfax County, VA area. If you are outside this area but are interested in placing an order, please reach out to discuss options.
+          </p></strong>
+        </form>
+
+        <aside class="panel contact-card">
+          <p class="section-label">Other ways to contact us</p>
+          <ul class="contact-list">
+            <li><strong>Phone:</strong> <a href="tel:2025941315">202-594-1315</a></li>
+            <li>
+              <a class="social-link" href="https://www.instagram.com/goodbatterbakeshop" target="_blank" rel="noreferrer" aria-label="Instagram / goodbatterbakeshop">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4.2"></circle>
+                    <circle cx="17.2" cy="6.8" r="1.1"></circle>
+                  </svg>
+                </span>
+                <span>/ goodbatterbakeshop</span>
+              </a>
+            </li>
+            <li>
+              <a class="social-link" href="https://www.facebook.com/goodbatterbakeshop" target="_blank" rel="noreferrer" aria-label="Facebook / goodbatterbakeshop">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <path d="M13.5 21V12.8H16.2L16.6 9.6H13.5V7.55C13.5 6.63 13.76 6 15.08 6H16.7V3.15C16.42 3.11 15.45 3 14.32 3C11.97 3 10.35 4.43 10.35 7.08V9.6H7.8V12.8H10.35V21H13.5Z"></path>
+                  </svg>
+                </span>
+                <span>/ goodbatterbakeshop</span>
+              </a>
+            </li>
+          </ul>
+          <div class="contact-placeholder">
+            <img src="assets/gallery/petals.jpg" alt="Decorated floral cake by Good Batter Bakeshop">
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Good Batter Bakeshop</strong>
+        <p>Homemade baked treats in Springfield VA</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

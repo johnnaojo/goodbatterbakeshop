@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Good Batter Bakeshop</title>
+  <meta name="description" content="View cakes, cupcakes, cookies, and dessert designs by Good Batter Bakeshop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="gallery">
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/images/GBB-Circle.png" alt="Good Batter Bakeshop logo">
+        <span>
+          <strong>Good Batter Bakeshop</strong>
+          <small>Homemade baked treats in Springfield VA</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+      <section class="page-hero panel">
+        <p class="section-label">Gallery</p>
+        <h1>Cakes, cupcakes, cookies, and other sweet treats</h1>
+      </section>
+
+      <section class="panel gallery-layout">
+        <div class="featured-image-wrap">
+          <img id="featured-image" src="assets/gallery/chocolate-drip-cake.jpg" alt="Featured bakery item">
+          <div class="featured-caption">
+            <strong id="featured-title">Chocolate Drip</strong>
+            <p id="featured-description">Select a thumbnail to feature it here.</p>
+          </div>
+        </div>
+        <div class="gallery-thumbs" id="gallery-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Good Batter Bakeshop</strong>
+        <p>Homemade baked treats in Springfield VA</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Order</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+</body>
+</html>
