@@ -741,6 +741,10 @@ textarea::placeholder {
     grid-template-columns: 1fr;
   }
 
+  .grid-horizontal-list .feature-list {
+    grid-template-columns: 1fr;
+  }
+
   .gallery-thumbs {
     height: auto;
     overflow: visible;
