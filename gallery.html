@@ -51,7 +51,15 @@
             <p id="featured-description">Select a thumbnail to feature it here.</p>
           </div>
         </div>
-        <div class="gallery-thumbs" id="gallery-grid" aria-live="polite"></div>
+        <div class="gallery-sidebar">
+          <div class="gallery-thumbs" id="gallery-grid" aria-live="polite">
+            <div class="gallery-sentinel" id="gallery-sentinel" aria-hidden="true"></div>
+          </div>
+          <div class="gallery-controls">
+            <p class="gallery-status" id="gallery-status">Loading gallery...</p>
+            <button class="button button-secondary" id="gallery-load-more" type="button">Load more</button>
+          </div>
+        </div>
       </section>
     </main>
 

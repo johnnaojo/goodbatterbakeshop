@@ -55,12 +55,27 @@ const galleryRoot = document.querySelector("#gallery-grid");
 const featuredImage = document.querySelector("#featured-image");
 const featuredTitle = document.querySelector("#featured-title");
 const featuredDescription = document.querySelector("#featured-description");
+const galleryStatus = document.querySelector("#gallery-status");
+const galleryLoadMore = document.querySelector("#gallery-load-more");
+const gallerySentinel = document.querySelector("#gallery-sentinel");
+
+const BATCH_SIZE = 12;
+
+let galleryItems = [];
+let renderedCount = 0;
+let loadObserver;
 
 function formatTitle(fileName) {
   return fileName
     .replace(/\.[^.]+$/, "")
     .replace(/[-_]+/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function setGalleryStatus(message) {
+  if (galleryStatus) {
+    galleryStatus.textContent = message;
+  }
 }
 
 function setFeatured(item, button) {
@@ -74,31 +89,99 @@ function setFeatured(item, button) {
   });
 }
 
-function renderGallery(items) {
-  if (!galleryRoot) {
+function createThumbButton(item, index) {
+  const button = document.createElement("button");
+  const imageLoading = index < 4 ? "eager" : "lazy";
+
+  button.type = "button";
+  button.className = "thumb-button";
+  button.setAttribute("aria-pressed", "false");
+  button.innerHTML = `
+    <span class="thumb-card">
+      <img src="${item.src}" alt="${item.title}" loading="${imageLoading}" decoding="async">
+      <strong>${item.title}</strong>
+    </span>
+  `;
+
+  button.addEventListener("click", () => setFeatured(item, button));
+  return button;
+}
+
+function updateGalleryControls() {
+  if (!galleryItems.length) {
+    if (galleryLoadMore) {
+      galleryLoadMore.hidden = true;
+    }
     return;
   }
 
-  galleryRoot.innerHTML = "";
+  const allLoaded = renderedCount >= galleryItems.length;
+  setGalleryStatus(`Showing ${renderedCount} of ${galleryItems.length} images`);
 
-  items.forEach((item, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "thumb-button";
-    button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+  if (galleryLoadMore) {
+    galleryLoadMore.hidden = allLoaded;
+    galleryLoadMore.disabled = allLoaded;
+  }
+}
 
-    button.innerHTML = `
-      <span class="thumb-card">
-        <img src="${item.src}" alt="${item.title}">
-        <strong>${item.title}</strong>
-      </span>
-    `;
+function renderNextBatch() {
+  if (!galleryRoot || renderedCount >= galleryItems.length) {
+    updateGalleryControls();
+    return;
+  }
 
-    button.addEventListener("click", () => setFeatured(item, button));
-    galleryRoot.appendChild(button);
+  const nextItems = galleryItems.slice(renderedCount, renderedCount + BATCH_SIZE);
+  nextItems.forEach((item, offset) => {
+    const button = createThumbButton(item, renderedCount + offset);
+    galleryRoot.insertBefore(button, gallerySentinel);
   });
 
-  setFeatured(items[0], galleryRoot.querySelector(".thumb-button"));
+  renderedCount += nextItems.length;
+
+  if (renderedCount === nextItems.length) {
+    const firstThumb = galleryRoot.querySelector(".thumb-button");
+    if (firstThumb) {
+      setFeatured(galleryItems[0], firstThumb);
+    }
+  }
+
+  updateGalleryControls();
+}
+
+function initializeGallery(items) {
+  if (!galleryRoot || !items.length) {
+    return;
+  }
+
+  galleryItems = items;
+  renderedCount = 0;
+
+  galleryRoot.querySelectorAll(".thumb-button").forEach((thumb) => thumb.remove());
+  renderNextBatch();
+}
+
+function setupBatchLoading() {
+  if (galleryLoadMore) {
+    galleryLoadMore.addEventListener("click", renderNextBatch);
+  }
+
+  if (!gallerySentinel || !galleryRoot || typeof IntersectionObserver === "undefined") {
+    return;
+  }
+
+  const overflowY = window.getComputedStyle(galleryRoot).overflowY;
+  const observerRoot = overflowY === "auto" || overflowY === "scroll" ? galleryRoot : null;
+
+  loadObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      renderNextBatch();
+    }
+  }, {
+    root: observerRoot,
+    rootMargin: "220px 0px",
+  });
+
+  loadObserver.observe(gallerySentinel);
 }
 
 async function loadRepoGallery() {
@@ -125,6 +208,11 @@ async function loadRepoGallery() {
   return images.length ? images : fallbackImages;
 }
 
+setupBatchLoading();
+
 loadRepoGallery()
-  .then(renderGallery)
-  .catch(() => renderGallery(fallbackImages));
+  .then(initializeGallery)
+  .catch(() => {
+    setGalleryStatus("Showing fallback gallery");
+    initializeGallery(fallbackImages);
+  });
